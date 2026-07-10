@@ -1,0 +1,63 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/Button.astro";
+---
+
+<MainLayout
+  title="Terima Kasih — Sterling Legal"
+  description="Pesan Anda telah berhasil dikirim. Tim Sterling Legal akan segera menghubungi Anda."
+>
+  <section class="page-hero section text-center" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="blob blob-hero" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="icon-wrap" style="width: 80px; height: 80px; background: var(--color-gradient-soft); border: 1px solid rgba(215, 38, 61, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--color-primary-light);">
+          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+          </svg>
+        </div>
+        <h1 style="margin-bottom: 1rem;">Pesan Berhasil <span class="gradient-text">Terkirim</span></h1>
+        <p class="page-hero-sub" style="margin-bottom: 2.5rem;">
+          Terima kasih telah menghubungi Sterling Legal. Tim kami telah menerima pesan Anda dan akan segera menghubungi kembali selambatnya dalam 1x24 jam kerja.
+        </p>
+        <Button href="/" variant="primary" size="lg">Kembali ke Beranda</Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--header-height) + var(--space-3xl));
+    padding-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blob-hero {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(215, 38, 61, 0.08) 0%,
+      transparent 70%
+    );
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    filter: blur(80px);
+  }
+
+  .page-hero-inner {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .page-hero-sub {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>

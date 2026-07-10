@@ -1,0 +1,127 @@
+---
+interface Props {
+  name: string;
+  credential: string;
+  specialization: string;
+  initials: string;
+}
+
+const { name, credential, specialization, initials } = Astro.props;
+---
+
+<article class="team-card">
+  <div class="team-avatar" aria-hidden="true">
+    <span class="team-initials">{initials}</span>
+    <div class="avatar-ring"></div>
+  </div>
+  <div class="team-info">
+    <h3 class="team-name">{name}</h3>
+    <p class="team-credential">{credential}</p>
+    <span class="team-spec badge">{specialization}</span>
+  </div>
+</article>
+
+<style>
+.team-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-gradient);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.team-card:hover {
+  border-color: var(--color-border);
+  box-shadow: var(--glow-sm), var(--shadow-card);
+  transform: translateY(-5px);
+}
+
+.team-card:hover::before {
+  opacity: 1;
+}
+
+/* Avatar */
+.team-avatar {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.team-initials {
+  position: relative;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--color-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
+  box-shadow: var(--glow-sm);
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(215, 38, 61, 0.25);
+  transition: border-color var(--transition-base);
+}
+
+.team-card:hover .avatar-ring {
+  border-color: rgba(215, 38, 61, 0.6);
+}
+
+/* Info */
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.team-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.team-credential {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-primary-light);
+  margin: 0;
+}
+
+.team-spec {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+}
+</style>

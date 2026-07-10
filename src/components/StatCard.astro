@@ -1,0 +1,75 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  suffix?: string;
+}
+
+const { number, label, suffix = '' } = Astro.props;
+---
+
+<div class="stat-card">
+  <div class="stat-number">
+    <span class="gradient-text">{number}</span><span class="stat-suffix gradient-text">{suffix}</span>
+  </div>
+  <p class="stat-label">{label}</p>
+  <div class="stat-accent" aria-hidden="true"></div>
+</div>
+
+<style>
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.stat-card:hover {
+  border-color: var(--color-border);
+  box-shadow: var(--glow-sm), var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-suffix {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.stat-accent {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  background: var(--color-gradient);
+  border-radius: 50%;
+  opacity: 0.07;
+  filter: blur(20px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.stat-card:hover .stat-accent {
+  opacity: 0.15;
+  transform: scale(1.3);
+}
+</style>

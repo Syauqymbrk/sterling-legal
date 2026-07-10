@@ -1,0 +1,684 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/Button.astro";
+import CoreValueCard from "../components/CoreValueCard.astro";
+import StatCard from "../components/StatCard.astro";
+import CaseCard from "../components/CaseCard.astro";
+
+const iconExcellence = `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/></svg>`;
+
+const iconIntegrity = `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>`;
+
+const iconDedication = `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>`;
+
+const coreValues = [
+  {
+    icon: iconExcellence,
+    title: "Keunggulan",
+    description:
+      "Kami berkomitmen pada standar hukum tertinggi, memastikan setiap strategi dan solusi dipersiapkan dengan presisi dan kedalaman analisis yang tak tertandingi.",
+  },
+  {
+    icon: iconIntegrity,
+    title: "Integritas",
+    description:
+      "Kepercayaan klien adalah fondasi kami. Setiap tindakan dan keputusan kami dilandasi kejujuran, transparansi, dan etika profesi yang tidak pernah kami kompromikan.",
+  },
+  {
+    icon: iconDedication,
+    title: "Dedikasi",
+    description:
+      "Kami hadir sepenuhnya untuk setiap klien. Dari konsultasi awal hingga penyelesaian akhir, dedikasi kami tidak pernah goyah dalam memperjuangkan hak Anda.",
+  },
+];
+
+const stats = [
+  { number: "200", suffix: "+", label: "Klien Terlayani" },
+  {
+    number: "92",
+    suffix: "%",
+    label: "Kasus Dimenangkan atau Diselesaikan Damai",
+  },
+  { number: "12", suffix: " Thn", label: "Berdiri Melayani Masyarakat" },
+  { number: "7", suffix: "", label: "Pengacara Bersertifikat" },
+];
+
+const cases = [
+  {
+    category: "Hukum Perdata",
+    title: "Sengketa Tanah Warisan",
+    description:
+      "Menyelesaikan konflik kepemilikan tanah antar ahli waris melalui pendekatan mediasi, menghindari proses pengadilan yang panjang dan menjaga keharmonisan keluarga.",
+    outcome: "Diselesaikan melalui mediasi damai",
+  },
+  {
+    category: "Hukum Korporasi",
+    title: "Restrukturisasi Kontrak Korporasi",
+    description:
+      "Membantu perusahaan klien merenegosiasi kontrak kerja sama yang merugikan, mengembalikan posisi tawar yang lebih adil dan melindungi kepentingan bisnis jangka panjang.",
+    outcome: "Kontrak berhasil direnegosiasi",
+  },
+  {
+    category: "Hukum Ketenagakerjaan",
+    title: "Perlindungan Hak Buruh",
+    description:
+      "Mendampingi pekerja dalam sengketa PHK sepihak hingga memperoleh kompensasi sesuai ketentuan hukum yang berlaku, menegakkan martabat dan hak-hak pekerja.",
+    outcome: "Kompensasi penuh diperoleh",
+  },
+];
+---
+
+<MainLayout
+  title="Sterling Legal — Keadilan yang Berkualitas, Solusi yang Terpercaya"
+>
+  <!-- ============================
+       HERO SECTION
+  ============================= -->
+  <section class="hero section" id="hero" aria-label="Hero">
+    <!-- Abstract blobs -->
+    <div class="blob blob-1" aria-hidden="true"></div>
+    <div class="blob blob-2" aria-hidden="true"></div>
+    <div class="blob blob-3" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <!-- Text content -->
+        <div class="hero-content">
+          <div class="section-label">Firma Hukum Profesional</div>
+
+          <h1 class="hero-headline">
+            Keadilan yang
+            <span class="gradient-text"> Berkualitas,</span><br />
+            Solusi yang
+            <span class="gradient-text"> Terpercaya.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Sterling Legal hadir dengan standar hukum tertinggi untuk melindungi
+            hak dan kepentingan Anda. Kami tidak hanya membela — kami memastikan
+            Anda memperoleh keadilan yang sesungguhnya.
+          </p>
+
+          <div class="hero-actions">
+            <Button href="/contact" variant="primary" size="lg">
+              Jadwalkan Konsultasi
+            </Button>
+            <Button href="/practice-areas" variant="outline" size="lg">
+              Lihat Layanan Kami
+            </Button>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <svg
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                ><path
+                  fill-rule="evenodd"
+                  d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                  clip-rule="evenodd"></path></svg
+              >
+              <span>Berpengalaman Sejak 2014</span>
+            </div>
+            <div class="trust-badge">
+              <svg
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                ><path
+                  fill-rule="evenodd"
+                  d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                  clip-rule="evenodd"></path></svg
+              >
+              <span>Konsultasi Rahasia & Aman</span>
+            </div>
+            <div class="trust-badge">
+              <svg
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                ><path
+                  fill-rule="evenodd"
+                  d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                  clip-rule="evenodd"></path></svg
+              >
+              <span>7 Pengacara Bersertifikat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-ring ring-1"></div>
+          <div class="visual-ring ring-2"></div>
+          <div class="visual-ring ring-3"></div>
+          <div class="visual-center">
+            <svg
+              width="56"
+              height="56"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.2"
+              color="white"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 5.49Z"
+              ></path>
+            </svg>
+          </div>
+          <!-- Floating cards -->
+          <div class="float-card float-card-1">
+            <span class="float-num gradient-text">92%</span>
+            <span class="float-lbl">Win Rate</span>
+          </div>
+          <div class="float-card float-card-2">
+            <span class="float-num gradient-text">200+</span>
+            <span class="float-lbl">Klien</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CORE VALUES
+  ============================= -->
+  <section
+    class="section section--sm"
+    id="core-values"
+    aria-label="Nilai-nilai inti"
+  >
+    <div class="container">
+      <div class="section-header text-center">
+        <div
+          class="section-label"
+          style="margin-inline:auto;display:flex;width:fit-content;"
+        >
+          Nilai Inti Kami
+        </div>
+        <h2>
+          Prinsip yang Mendasari<br /><span class="gradient-text"
+            >Setiap Langkah Kami</span
+          >
+        </h2>
+        <div class="divider divider--center"></div>
+        <p>
+          Tiga pilar yang menjadi fondasi Sterling Legal dalam memberikan
+          pelayanan hukum yang tidak hanya efektif, tetapi bermakna bagi setiap
+          klien.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          coreValues.map((v) => (
+            <CoreValueCard
+              icon={v.icon}
+              title={v.title}
+              description={v.description}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       STATS
+  ============================= -->
+  <section
+    class="section--sm stats-section"
+    id="stats"
+    aria-label="Statistik dan rekam jejak"
+  >
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stats-label">
+          <div class="section-label">Rekam Jejak</div>
+          <h2>
+            Angka yang Berbicara<br /><span class="gradient-text"
+              >atas Kepercayaan Anda</span
+            >
+          </h2>
+        </div>
+        <div class="stats-grid">
+          {
+            stats.map((s) => (
+              <StatCard number={s.number} suffix={s.suffix} label={s.label} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CASE PORTFOLIO
+  ============================= -->
+  <section class="section" id="portfolio" aria-label="Portofolio kasus">
+    <div class="container">
+      <div class="section-header text-center">
+        <div
+          class="section-label"
+          style="margin-inline:auto;display:flex;width:fit-content;"
+        >
+          Portofolio Kasus
+        </div>
+        <h2>
+          Setiap Kasus, <span class="gradient-text">Sebuah Kemenangan</span>
+        </h2>
+        <div class="divider divider--center"></div>
+        <p>
+          Studi kasus anonim yang mencerminkan komitmen kami dalam menghadirkan
+          solusi nyata bagi klien dari berbagai latar belakang.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          cases.map((c) => (
+            <CaseCard
+              category={c.category}
+              title={c.title}
+              description={c.description}
+              outcome={c.outcome}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FINAL CTA
+  ============================= -->
+  <section
+    class="cta-section section--sm"
+    id="cta"
+    aria-label="Ajakan untuk konsultasi"
+  >
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="cta-content">
+          <div
+            class="section-label"
+            style="display:flex;width:fit-content;margin:0 auto var(--space-md);"
+          >
+            Mulai Sekarang
+          </div>
+          <h2 class="cta-headline">
+            Setiap Masalah Hukum Butuh<br />
+            <span class="gradient-text">Langkah yang Tepat.</span>
+          </h2>
+          <p class="cta-sub">
+            Mari diskusikan bersama Sterling Legal. Tim kami siap mendengarkan,
+            menganalisis, dan memberikan solusi hukum terbaik untuk Anda.
+          </p>
+          <div class="cta-actions">
+            <Button href="/contact" variant="primary" size="lg">
+              Jadwalkan Konsultasi
+            </Button>
+            <Button href="/team" variant="ghost" size="lg">
+              Kenali Tim Kami
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: calc(var(--header-height) + var(--space-xl));
+    position: relative;
+    overflow: hidden;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(2, 24, 43, 0.75) 0%,
+        rgba(2, 24, 43, 0.92) 100%
+      ),
+      url("/images/office.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation:
+      blob-morph 12s ease-in-out infinite,
+      float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .blob-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(215, 38, 61, 0.18) 0%,
+      transparent 70%
+    );
+    top: -100px;
+    right: -100px;
+    animation-delay: 0s, 0s;
+  }
+
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(
+      circle,
+      rgba(168, 30, 47, 0.12) 0%,
+      transparent 70%
+    );
+    bottom: 100px;
+    left: -80px;
+    animation-delay: 4s, 2s;
+  }
+
+  .blob-3 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+      circle,
+      rgba(215, 38, 61, 0.1) 0%,
+      transparent 70%
+    );
+    top: 40%;
+    left: 40%;
+    animation-delay: 8s, 4s;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero-headline {
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    max-width: 520px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-xs);
+  }
+
+  /* Trust badges */
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-xs);
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .trust-badge svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 420px;
+  }
+
+  .visual-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(215, 38, 61, 0.15);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .ring-1 {
+    width: 300px;
+    height: 300px;
+    animation-delay: 0s;
+  }
+  .ring-2 {
+    width: 220px;
+    height: 220px;
+    border-color: rgba(215, 38, 61, 0.25);
+    animation-delay: 1s;
+  }
+  .ring-3 {
+    width: 140px;
+    height: 140px;
+    border-color: rgba(215, 38, 61, 0.4);
+    animation-delay: 2s;
+  }
+
+  .visual-center {
+    width: 80px;
+    height: 80px;
+    background: var(--color-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glow-md);
+    animation: pulse-glow 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  /* Float cards */
+  .float-card {
+    position: absolute;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    box-shadow: var(--shadow-card);
+    z-index: 3;
+  }
+
+  .float-card-1 {
+    top: 60px;
+    right: 20px;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .float-card-2 {
+    bottom: 80px;
+    left: 20px;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 2.5s;
+  }
+
+  .float-num {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .float-lbl {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  /* ---- STATS ---- */
+  .stats-section {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(215, 38, 61, 0.03),
+      transparent
+    );
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .stats-label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .stats-label h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  /* ---- CTA ---- */
+  .cta-section {
+    padding-bottom: var(--space-3xl);
+  }
+
+  .cta-inner {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl) var(--space-xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 200px;
+    background: radial-gradient(
+      ellipse,
+      rgba(215, 38, 61, 0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .cta-headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom: var(--space-md);
+  }
+
+  .cta-sub {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-visual {
+      height: 280px;
+    }
+    .hero-actions,
+    .trust-badges {
+      justify-content: center;
+    }
+    .hero-sub {
+      margin-inline: auto;
+    }
+
+    .stats-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .stats-label {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .cta-inner {
+      padding: var(--space-xl) var(--space-md);
+    }
+    .hero-visual {
+      display: none;
+    }
+  }
+</style>

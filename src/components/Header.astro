@@ -1,0 +1,334 @@
+---
+const navLinks = [
+  { href: "/", id: "Beranda", en: "Home" },
+  { href: "/about", id: "Tentang", en: "About" },
+  { href: "/practice-areas", id: "Bidang Hukum", en: "Practice Areas" },
+  { href: "/team", id: "Tim", en: "Team" },
+  { href: "/contact", id: "Kontak", en: "Contact" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="site-header">
+  <div class="container">
+    <div class="header-inner flex-between">
+      <!-- Logo -->
+      <a href="/" class="logo" aria-label="Sterling Legal - Halaman Utama">
+        <img
+          src="/logo.svg"
+          alt="Sterling Legal"
+          width="40"
+          height="40"
+          style="margin-right: 8px; background: white; border-radius: 50%; padding: 5px; border: 2px solid #C3132E;"
+        />
+        <span class="logo-sterling gradient-text">Sterling</span>
+        <span class="logo-legal" style="margin-left: 4px;"> Legal</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Navigasi utama">
+        <ul class="nav-list">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class={`nav-link ${currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href)) ? "nav-link--active" : ""}`}
+                  data-lang-id={link.id}
+                  data-lang-en={link.en}
+                >
+                  {link.id}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Right: Language Toggle + CTA -->
+      <div class="header-actions">
+        <button
+          id="lang-toggle"
+          class="lang-toggle"
+          aria-label="Toggle language"
+        >
+          🇬🇧 EN
+        </button>
+        <a href="/contact" class="btn-header-cta" data-lang-cta> Konsultasi </a>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Navigasi mobile">
+    <ul class="mobile-nav-list">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`mobile-nav-link ${currentPath === link.href ? "mobile-nav-link--active" : ""}`}
+              data-lang-id={link.id}
+              data-lang-en={link.en}
+            >
+              {link.id}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="/contact" class="mobile-cta"> Konsultasi </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* ---- HEADER ---- */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    background: rgba(2, 24, 43, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(215, 38, 61, 0.12);
+    transition:
+      background var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .site-header:hover {
+    background: rgba(2, 24, 43, 0.9);
+  }
+
+  .header-inner {
+    height: var(--header-height);
+    gap: var(--space-lg);
+  }
+
+  /* ---- LOGO ---- */
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .logo:hover {
+    opacity: 0.85;
+  }
+
+  .logo-sterling {
+    /* gradient-text applied inline */
+  }
+
+  .logo-legal {
+    color: var(--color-text);
+  }
+
+  /* ---- DESKTOP NAV ---- */
+  .nav-desktop {
+    display: flex;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-pill);
+    transition:
+      color var(--transition-fast),
+      background var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link--active {
+    color: var(--color-primary-light);
+    background: rgba(215, 38, 61, 0.1);
+  }
+
+  /* ---- HEADER ACTIONS ---- */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  /* ---- LANG TOGGLE ---- */
+  .lang-toggle {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-pill);
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      background var(--transition-fast);
+  }
+
+  .lang-toggle:hover {
+    color: var(--color-text);
+    border-color: var(--color-border);
+    background: rgba(215, 38, 61, 0.08);
+  }
+
+  /* ---- CTA BUTTON (header) ---- */
+  .btn-header-cta {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-gradient);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.3rem;
+    transition:
+      opacity var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .btn-header-cta:hover {
+    opacity: 0.9;
+    box-shadow: var(--glow-sm);
+    transform: translateY(-1px);
+  }
+
+  /* ---- HAMBURGER ---- */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 0 8px;
+    transition: border-color var(--transition-fast);
+  }
+
+  .menu-toggle:hover {
+    border-color: var(--color-border);
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-text-muted);
+    border-radius: 2px;
+    transition: background var(--transition-fast);
+  }
+
+  /* ---- MOBILE NAV ---- */
+  .nav-mobile {
+    display: none;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: var(--space-sm) 0;
+  }
+
+  .nav-mobile.is-open {
+    display: block;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--container-pad);
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    transition:
+      color var(--transition-fast),
+      background var(--transition-fast);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link--active {
+    color: var(--color-primary-light);
+    background: rgba(215, 38, 61, 0.08);
+  }
+
+  .mobile-cta {
+    display: block;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-gradient);
+    border-radius: var(--radius-pill);
+    padding: 0.75rem 1.5rem;
+    margin-top: var(--space-sm);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .nav-desktop {
+      display: none;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .lang-toggle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .btn-header-cta {
+      display: none;
+    }
+  }
+</style>

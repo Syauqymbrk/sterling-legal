@@ -1,0 +1,146 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: "id" | "en";
+}
+
+const {
+  title,
+  description = "Sterling Legal — Firma hukum profesional dengan standar keunggulan, integritas, dan dedikasi. Layanan hukum terpercaya di Bogor dan sekitarnya.",
+  lang = "id",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#02182B" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Language toggle — switches nav labels between ID and EN
+      const toggle = document.getElementById("lang-toggle");
+      const navItems = document.querySelectorAll("[data-lang-id]");
+      const ctaBtn = document.querySelector("[data-lang-cta]");
+      let currentLang = "id";
+
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          currentLang = currentLang === "id" ? "en" : "id";
+          toggle.textContent = currentLang === "id" ? "🇬🇧 EN" : "🇮🇩 ID";
+          navItems.forEach((el) => {
+            const htmlEl = el as HTMLElement;
+            htmlEl.textContent =
+              currentLang === "id"
+                ? htmlEl.dataset.langId || ""
+                : htmlEl.dataset.langEn || "";
+          });
+          if (ctaBtn) {
+            const btn = ctaBtn as HTMLElement;
+            btn.textContent = currentLang === "id" ? "Konsultasi" : "Consult";
+          }
+        });
+      }
+
+      // Mobile nav toggle (CSS-based fallback)
+      const menuBtn = document.getElementById("menu-toggle");
+      const mobileNav = document.getElementById("mobile-nav");
+      if (menuBtn && mobileNav) {
+        menuBtn.addEventListener("click", () => {
+          const isOpen = mobileNav.classList.toggle("is-open");
+          menuBtn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+    </script>
+  </body>
+
+  <style is:global>
+    .click-shard {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, #d7263d, #c3132e);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      opacity: 1;
+      will-change: transform, opacity;
+    }
+  </style>
+
+  <script>
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const shardCount = isTouchDevice ? 4 : 8;
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        const colors = ["#D7263D", "#C3132E", "#ffffff"];
+
+        for (let i = 0; i < shardCount; i++) {
+          const shard = document.createElement("div");
+          shard.className = "click-shard";
+          shard.style.left = e.clientX + "px";
+          shard.style.top = e.clientY + "px";
+          shard.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          const angle = (Math.PI * 2 * i) / shardCount + Math.random() * 0.5;
+          const distance = 30 + Math.random() * 40;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          const rotation = Math.random() * 360;
+
+          document.body.appendChild(shard);
+
+          shard.animate(
+            [
+              {
+                transform: `translate(0, 0) rotate(0deg) scale(1)`,
+                opacity: 1,
+              },
+              {
+                transform: `translate(${tx}px, ${ty}px) rotate(${rotation}deg) scale(0.3)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration: 400,
+              easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            },
+          ).onfinish = () => shard.remove();
+        }
+      },
+      { passive: true },
+    );
+  </script>
+</html>

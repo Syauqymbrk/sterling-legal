@@ -18,8 +18,8 @@ const { icon, title, description } = Astro.props;
 
 <style>
   .core-value-card {
-    background: linear-gradient(145deg, var(--color-surface-2), var(--color-surface));
-    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border: 1px solid rgba(215, 38, 61, 0.4);
     border-radius: var(--radius-card);
     padding: var(--space-lg) var(--space-md);
     text-align: center;
@@ -29,7 +29,6 @@ const { icon, title, description } = Astro.props;
       transform var(--transition-base);
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-card);
   }
 
   .core-value-card::before {
@@ -40,14 +39,14 @@ const { icon, title, description } = Astro.props;
     transform: translateX(-50%);
     width: 60%;
     height: 1px;
-    background: var(--color-gradient-gold);
+    background: var(--color-gradient);
     opacity: 0;
     transition: opacity var(--transition-base);
   }
 
   .core-value-card:hover {
-    border-color: var(--color-secondary);
-    box-shadow: var(--glow-gold-sm), var(--shadow-card);
+    border-color: #e8566a;
+    box-shadow: var(--glow-sm), var(--shadow-card);
     transform: translateY(-5px);
   }
 
@@ -58,19 +57,19 @@ const { icon, title, description } = Astro.props;
   .icon-wrap {
     width: 60px;
     height: 60px;
-    background: var(--color-gradient-gold-soft);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: var(--color-gradient-soft);
+    border: 1px solid rgba(215, 38, 61, 0.2);
     border-radius: var(--radius-card);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto var(--space-md);
-    color: var(--color-secondary);
+    color: var(--color-primary-light);
     transition: box-shadow var(--transition-base);
   }
 
   .core-value-card:hover .icon-wrap {
-    box-shadow: var(--glow-gold-sm);
+    box-shadow: var(--glow-sm);
   }
 
   .value-title {

@@ -1,0 +1,70 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/Button.astro";
+---
+
+<MainLayout
+  title="404: Halaman Tidak Ditemukan — Sterling Legal"
+  description="Halaman yang Anda cari tidak dapat ditemukan."
+>
+  <section class="page-hero section text-center" style="min-height: 70vh; display: flex; align-items: center;">
+    <div class="blob blob-hero" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <!-- The "404" Number -->
+        <h1 class="error-code gradient-text" style="font-size: 6rem; line-height: 1; margin-bottom: 1rem; text-shadow: var(--glow-md);">404</h1>
+        
+        <h2>Halaman Tidak <span class="gradient-text">Ditemukan</span></h2>
+        
+        <div class="divider divider--center"></div>
+        
+        <p class="page-hero-sub" style="margin-bottom: 2.5rem; max-width: 500px; margin-inline: auto;">
+          Keadilan selalu ada jalannya, tapi sayangnya halaman yang Anda cari tidak ada di sini. Mungkin tautannya rusak atau telah dipindahkan.
+        </p>
+        
+        <div class="cta-actions" style="justify-content: center;">
+          <Button href="/" variant="primary" size="lg">Kembali ke Beranda</Button>
+          <Button href="/contact" variant="ghost" size="lg">Hubungi Kami</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--header-height) + var(--space-3xl));
+    padding-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blob-hero {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(215, 38, 61, 0.08) 0%,
+      transparent 70%
+    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: blur(80px);
+  }
+
+  .page-hero-inner {
+    max-width: 700px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .page-hero-sub {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>
